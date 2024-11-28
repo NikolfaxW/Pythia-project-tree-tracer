@@ -48,6 +48,8 @@ add_executable(Pythia-project-tree-tracer main.cpp
         particleUnit.cpp
         jetStructure.h
         jetStructure.cpp
+        func.cpp
+        func.h
 )
 
 # Convert ROOT_LIBS string to a list of libraries
