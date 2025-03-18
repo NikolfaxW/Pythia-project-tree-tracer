@@ -23,11 +23,15 @@
 #include "fastjet/ClusterSequence.hh"
 #include "TCanvas.h"
 #include "TH2F.h"
+#include "jetStructure.h"
 
 
 std::string createBlock( const unsigned int x, const unsigned int y, std::string fill, const unsigned int id, const unsigned int status, const unsigned int evi);
 std::string createArrow(const unsigned int x1, const unsigned int y1, const unsigned int x2, const unsigned int y2);
 void drawBlocksTest();
+void drawBlocks(jetStructure &jetStructure);
+jetStructure generateJetstructure(const unsigned int requiredNumberOfD_0);
+
 void learnD_0JetsOrigin(const unsigned int requiredNumberOfD_0);
 void learnD_0JetsOriginTest(const unsigned int requiredNumberOfD_0);
 

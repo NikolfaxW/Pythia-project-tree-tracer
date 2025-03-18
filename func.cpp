@@ -36,9 +36,9 @@ std::string createArrow(const unsigned int x1, const unsigned int y1, const unsi
 }
 
 void drawBlocksTest() {
-    std::remove("../results/block_diagram.html");
+    std::remove("../results/block_diagram_example.html");
     // Create an HTML file
-    std::ofstream htmlFile("../results/block_diagram.html");
+    std::ofstream htmlFile("../results/block_diagram_example.html");
 
     if (!htmlFile) {
         std::cerr << "Error creating file." << std::endl;
@@ -86,6 +86,8 @@ void learnD_0JetsOrigin(const unsigned int requiredNumberOfD_0){
     particleDictionarry dict;
     Pythia8::Pythia pythia; //create pythia object
     pythia.readFile("../config1.cmnd"); //read config file and intialize pythia
+    pythia.readString("Random:setSeed = on");
+    pythia.readString("Random:seed = 12345");
     pythia.init();
 
     std::list<particleUnit> j_constituents;
@@ -182,6 +184,7 @@ void learnD_0JetsOrigin(const unsigned int requiredNumberOfD_0){
         file << " X \n\n";
         showProgressBar(numberOfD_0Found, requiredNumberOfD_0);
     }
+    std::cout << std::endl;
     TCanvas *c1 = new TCanvas("?", "?", 800, 600);
     h1->Draw();
     c1->Update();
@@ -303,4 +306,8 @@ void learnD_0JetsOriginTest(const unsigned int requiredNumberOfD_0){
     delete mothers;
     delete daughters;
     file.close();
+}
+
+jetStructure generateJetstructure(const unsigned int requiredNumberOfD_0){
+
 }

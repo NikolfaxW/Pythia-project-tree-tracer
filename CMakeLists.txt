@@ -50,6 +50,10 @@ add_executable(Pythia-project-tree-tracer main.cpp
         jetStructure.cpp
         func.cpp
         func.h
+        blocks.cpp
+        blocks.h
+        blocks.h
+        blocks.h
 )
 
 # Convert ROOT_LIBS string to a list of libraries
