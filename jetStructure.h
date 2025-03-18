@@ -28,11 +28,14 @@ struct particle{
         }
         return *this;
     }
-    bool operator==(const particle& other) {
-        if (this == &other) {
-            return true;
-        }
-        return false;
+    bool operator==(const particle& other) const {
+        return _id == other._id &&
+               _st == other._st &&
+               _Ei == other._Ei &&
+               depth == other.depth &&
+               n_mothers == other.n_mothers &&
+               mother1 == other.mother1 &&
+               mother2 == other.mother2;
     }
 };
 
