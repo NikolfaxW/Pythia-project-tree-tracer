@@ -230,10 +230,7 @@ void learnD_0JetsOriginTest(const unsigned int requiredNumberOfD_0){
                         30, 0, 30); // 50 bins from -5 to 5
     h1->GetXaxis()->SetNdivisions(15);
 
-    std::deque<int> * mothers, * daughters, * temp;
-    mothers = new std::deque<int>;
-    daughters = new std::deque<int>;
-    std::vector<int> history;
+
 
     for (int iEvent = 0; numberOfD_0Found < requiredNumberOfD_0; ++iEvent) { //loop over needed number of events
         if (!pythia.next()) continue; //generate next event, if it is not possible, continue
@@ -252,46 +249,10 @@ void learnD_0JetsOriginTest(const unsigned int requiredNumberOfD_0){
         }
         ++numberOfD_0Found;
         auto p = pythia.event[i];
+        //here
 
-        mothers->clear();
-        daughters->clear();
-        history.clear();
-
-        daughters->push_back(i);
         file << "\nD_0 # : " << numberOfD_0Found << " ; D_0 pT : " << p.pT() << std::endl;
 
-        while(!daughters->empty()){
-            while(!daughters->empty()){
-                i = daughters->front();
-                daughters->pop_front();
-                if(i == 0){
-                    continue;
-                }
-                p = pythia.event[i];
-                file << "[ idAbs : " << dict.getIdABSName(p.idAbs()) << "; id : " << p.id()  << " ; stat : " << dict.getStatusName(p.status()) << " ; EvI : " << i << " ; m1 : " << p.mother1() << " ; m2 : " << p.mother2() << " ; d1 " << p.daughter1() << " ; d2 : " << p.daughter2() << "  ] ";
-                if(p.status() == 21 || p.status() == -21){
-                    h1->Fill(p.idAbs());
-                }
-                if(history.end() == std::find(history.begin(), history.end(), p.mother1())){
-                    mothers->push_back(p.mother1());
-                    history.push_back(p.mother1());
-                }
-//                    mothers->push_back(p.mother1());
-//                    history.push_back(p.mother1());
-                if(p.mother1() != p.mother2()){
-                    if(history.end() == std::find(history.begin(), history.end(), p.mother2())){
-                        mothers->push_back(p.mother2());
-                        history.push_back(p.mother2());
-                    }
-//                    mothers->push_back(p.mother2());
-//                    history.push_back(p.mother2());
-                }
-            }
-            file << "\n => \n";
-            temp = mothers;
-            mothers = daughters;
-            daughters = temp;
-        }
 
 
         file << " X \n\n";
@@ -303,8 +264,6 @@ void learnD_0JetsOriginTest(const unsigned int requiredNumberOfD_0){
 
     c1->SaveAs("../results/1DHistogram.png");
 
-    delete mothers;
-    delete daughters;
     file.close();
 }
 
