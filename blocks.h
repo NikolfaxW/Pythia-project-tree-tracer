@@ -26,10 +26,10 @@ struct block{
 
 struct arrow{
     const unsigned int x1,  y1, x2, y2;
-    arrow(const unsigned int x1, const unsigned int y1, const unsigned int x2, const unsigned int y2) : x1(x1), y1(y2), x2(x2), y2(y2){}
+    arrow(const unsigned int x1, const unsigned int y1, const unsigned int x2, const unsigned int y2) : x1(x1), y1(y1), x2(x2), y2(y2){}
     std::string print(){
         std::string result = "<line x1 = \"" + std::to_string(x1) + "\" y1 = \"" + std::to_string(y1) + "\" x2 = \"" + std::to_string(x2) + "\" y2 = \"" + std::to_string(y2) + "\" stroke = \"black\" stroke-width = \"2\"></line>\n";
-        result.append("<polygon points = \"" + std::to_string(x2) + "," + std::to_string(y2 - 5) + " " + std::to_string(x2) + "," + std::to_string(y2 + 5) + " " + std::to_string(x2 + 10) + "," + std::to_string(y2) + "\" fill = \"black\"></polygon>\n");
+        result.append("<polygon points = \"" + std::to_string(x2+5) + "," + std::to_string(y2 + 5) + " " + std::to_string(x2+5) + "," + std::to_string(y2 - 5) + " " + std::to_string(x2 - 5) + "," + std::to_string(y2) + "\" fill = \"black\"></polygon>\n");
         return result;
     }
 };

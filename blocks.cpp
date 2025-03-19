@@ -32,19 +32,19 @@ void blocks::createBlocks() {
             if(_js->particleColumns[i][j].n_mothers > 0){
                 for(l = 0; l < _js->particleColumns[_js->particleColumns[i][j].mother1->depth - 1].size(); ++l){
                     if(_js->particleColumns[_js->particleColumns[i][j].mother1->depth - 1][l] == *_js->particleColumns[i][j].mother1){
-                        this->createArrow(100 + i * 200, 100 + j * 160, 100 + (l+1) * 200,100 + (_js->particleColumns[i][j].mother1->depth - 1 )*160);
-                        std::cout << l << std::endl;
+                        std::cout << "from" << i << ";"<< j << " to "  << _js->particleColumns[i][j].mother1->depth - 1 << ";" << l << std::endl;
+                        this->createArrow(100 + i * 200, 150 + j * 160, 250 + (_js->particleColumns[i][j].mother1->depth - 1) * 200, 150 + l * 160);
+
                         break;
                     }
                 }
             }
             if(_js->particleColumns[i][j].n_mothers == 2){
                 for(l = 0; l < _js->particleColumns[_js->particleColumns[i][j].mother2->depth - 1].size(); ++l) {
-                    if (_js->particleColumns[_js->particleColumns[i][j].mother2->depth][l] ==
+                    if (_js->particleColumns[_js->particleColumns[i][j].mother2->depth - 1][l] ==
                         *_js->particleColumns[i][j].mother2) {
-                        this->createArrow(100 + i * 200, 100 + j * 160, 100 + (l+1) * 200,
-                                          100 + (_js->particleColumns[i][j].mother2->depth - 1) * 160);
-                        std::cout << l << std::endl;
+                        std::cout << "from " << i << ";"<< j << " to "  << _js->particleColumns[i][j].mother2->depth - 1 << ";"<< l << std::endl;
+                        this->createArrow(100 + i * 200, 150 + j * 160, 250 + (_js->particleColumns[i][j].mother2->depth - 1) * 200, 150 + l * 160);
                         break;
                     }
                 }
